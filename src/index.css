@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans bg-white text-ink antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  ::selection {
+    @apply bg-brand text-white;
+  }
+}
+
+@layer components {
+  .container-pg {
+    @apply mx-auto w-full max-w-container px-6 md:px-10 lg:px-16;
+  }
+  .btn-primary {
+    @apply inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-brand px-7 text-base font-bold text-white shadow-soft transition hover:bg-brand-600 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-secondary {
+    @apply inline-flex h-14 items-center justify-center gap-2 rounded-2xl border-2 border-ink px-7 text-base font-bold text-ink transition hover:bg-ink hover:text-white;
+  }
+  .eyebrow {
+    @apply text-[13px] font-bold uppercase tracking-[0.2em] text-brand;
+  }
+}
