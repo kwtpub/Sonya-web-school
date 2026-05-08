@@ -1,73 +1,55 @@
-# React + TypeScript + Vite
+# Точка Роста — лендинг школы подготовки к ЕГЭ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Продающий одностраничник для школы подготовки к ЕГЭ по математике и русскому языку.
 
-Currently, two official plugins are available:
+## Структура репозитория
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+.
+├── src/                       — исходники React-приложения
+│   ├── components/            — секции лендинга (Header, Hero, Courses…)
+│   ├── App.tsx                — корневой компонент
+│   ├── main.tsx               — точка входа
+│   └── index.css              — стили + Tailwind
+├── public/                    — статика (favicon, _redirects)
+├── design/
+│   ├── landing.pen            — макет лендинга (Pencil)
+│   ├── banners.pen            — макеты баннеров (Pencil)
+│   └── exports/               — PNG-экспорты лендинга и скриншоты сайта
+├── banners/                   — экспортированные баннеры в PNG
+│   ├── web-banner-1200x628.png
+│   └── outdoor-banner-3000x1500.png
+├── netlify.toml               — конфигурация деплоя
+├── tailwind.config.js         — фирменная палитра
+├── TOOLS.md                   — перечень инструментов (п. 4.4 ТЗ)
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Локальный запуск
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # production-сборка → dist/
+npm run preview  # предпросмотр сборки
 ```
+
+Требования: Node.js 20+.
+
+## Деплой на Netlify
+
+Способ A — через Git:
+1. Залогиниться на https://app.netlify.com
+2. **Add new site → Import existing project → GitHub → kwtpub/Sonya-web-school**
+3. Build command: `npm run build` · Publish directory: `dist` (Netlify подхватит `netlify.toml` автоматически)
+
+Способ B — drag-n-drop:
+```bash
+npm run build
+# перетащить папку dist/ на https://app.netlify.com/drop
+```
+
+## Стек
+
+React 19 · TypeScript · Vite · Tailwind CSS · Pencil (дизайн) · Netlify.
+Полный перечень — см. [TOOLS.md](./TOOLS.md).
